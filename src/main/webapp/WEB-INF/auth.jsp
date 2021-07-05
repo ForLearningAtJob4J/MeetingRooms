@@ -66,7 +66,7 @@
                         <input id="password" type="text" class="form-control" name="password">
                     </div>
                     <button onclick="return validate();" type="submit" class="btn btn-primary">Войти</button>
-                    <img alt="LOADING" id="loading-indicator" src="../img/loader.gif"/>
+                    <img alt="LOADING" id="loading-indicator" src="img/loader.gif"/>
                 </form>
             </div>
         </div>

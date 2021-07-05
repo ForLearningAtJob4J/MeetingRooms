@@ -10,7 +10,7 @@
   <packaging>war</packaging>
 
   <name>MeetingRooms Maven Webapp</name>
-  <url>http://localhost:8080</url>
+  <url>http://localhost:8080/meetingrooms</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

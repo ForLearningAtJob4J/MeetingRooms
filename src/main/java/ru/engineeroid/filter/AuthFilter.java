@@ -18,7 +18,7 @@ public class AuthFilter implements Filter {
         req.setCharacterEncoding("UTF-8");
         HttpServletResponse resp = (HttpServletResponse) sresp;
         String uri = req.getRequestURI();
-        if (uri.endsWith("auth")) {
+        if (uri.endsWith("auth") || uri.endsWith("loader.gif")) {
             chain.doFilter(sreq, sresp);
             return;
         }
