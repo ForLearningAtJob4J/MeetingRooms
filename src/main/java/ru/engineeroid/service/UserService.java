@@ -22,7 +22,7 @@ public class UserService extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().println(new JSONArray(StoreManager.instOf().findAllUsers()));
+        resp.getWriter().println(new JSONArray(StoreManager.instOf().findAll(new User())));
     }
 
     @Override

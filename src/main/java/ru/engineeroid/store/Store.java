@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Store {
 
-    List<User> findAllUsers();
+    <T> List<T> findAll(T subject);
 
     User findUserByEmail(String email);
 

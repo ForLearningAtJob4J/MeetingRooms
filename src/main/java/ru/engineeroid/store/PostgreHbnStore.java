@@ -7,7 +7,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import ru.engineeroid.model.IdOwner;
-//import ru.engineeroid.model.Task;
 import ru.engineeroid.model.User;
 
 import javax.persistence.NoResultException;
@@ -42,9 +41,10 @@ public class PostgreHbnStore implements Store {
     }
 
     @Override
-    public List<User> findAllUsers() {
-        return this.tx(
-                session -> session.createQuery("from User", User.class).list()
+    @SuppressWarnings("unchecked")
+    public <T> List<T> findAll(T subject) {
+        return (List<T>) this.tx(
+                session -> session.createQuery("from " + subject.getClass().getName(), subject.getClass()).list()
         );
     }
 
@@ -76,6 +76,7 @@ public class PostgreHbnStore implements Store {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T extends IdOwner> void delete(T subject) {
         this.tx(session -> {
             T found = (T) session.get(subject.getClass(), subject.getId());
@@ -85,6 +86,7 @@ public class PostgreHbnStore implements Store {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T extends IdOwner> T findById(T subject) {
         return this.tx(
                 session -> session.find((Class<T>) subject.getClass(), subject.getId())

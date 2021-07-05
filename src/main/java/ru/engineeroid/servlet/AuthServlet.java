@@ -1,4 +1,4 @@
-package ru.engineeroid.servlets;
+package ru.engineeroid.servlet;
 
 import ru.engineeroid.model.User;
 import ru.engineeroid.store.StoreManager;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class AuthServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
-        if (StoreManager.instOf().findAllUsers().isEmpty()) {
+        if (StoreManager.instOf().findAll(new User()).isEmpty()) {
             try {
                 User admin = new User().setName("Admin").setEmail("root@local").setPassword("root");
                 StoreManager.instOf().add(admin);
@@ -27,6 +27,7 @@ public class AuthServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         if ("exit".equals(req.getParameter("op"))) {
             req.getSession().setAttribute("user", null);
         }
